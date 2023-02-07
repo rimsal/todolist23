@@ -8,9 +8,7 @@ class Uzduotis(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     data = models.DateTimeField(auto_now_add=True)
 
-    class Meta:
+class Meta:
         verbose_name = 'Užduotis'
         verbose_name_plural = 'Užduotys'
-
-    class Meta:
         ordering = ['-data']
