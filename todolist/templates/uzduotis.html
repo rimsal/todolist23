@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+ {% block title %}<title>Užduotys</title>{% endblock %}
+{% block content %}
+  <h1>Mano užduotis</h1>
+  <p>Mano atlikti darbai.</p>
+  {% for uzduotis in uzduotys %}
+    <li>{{uzduotis.id}}</li>
+    {% endfor %}
+{% endblock %}

@@ -13,7 +13,7 @@ def uzduotis(request, uzduotis_id):
     context = {
         'uzduotis': uzduotis
     }
-    return render(request, 'uzduotisnew.html', {'uzduotis': uzduotis})
+    return render(request, 'uzduotis.html', {'uzduotis': uzduotis})
 
 
 class UzduotisView(generic.ListView):
@@ -51,7 +51,6 @@ class UzduotisEditView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateVi
 
 class UzduotisDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = Uzduotis
-
     template_name = "indexdelete.html"
 
     def test_func(self):
@@ -60,4 +59,3 @@ class UzduotisDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.Delete
 
     def get_success_url(self):
         return reverse('uzduotis', kwargs={'pk': self.kwargs['pk']})
-
