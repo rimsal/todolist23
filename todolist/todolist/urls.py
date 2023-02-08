@@ -8,6 +8,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('todolist/', include('todo.urls')),
     path('admin/', admin.site.urls),
+    path('tinymce/', include('tinymce.urls')),
     path('', RedirectView.as_view(url='todolist/', permanent=True)),
 ] + (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT))
 

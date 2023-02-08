@@ -22,16 +22,21 @@ class UzduotisView(generic.ListView):
     context_object_name = 'uzduotys'
 
 
-class UzduotisCreateView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
+class UzduotisCreateView(LoginRequiredMixin, generic.ListView):
     model = Uzduotis
     fields = ['title', 'body', 'data']
     template_name = 'indexnew.html'
-    success_url = "/todolist/"
+    success_url = "/todolist"
+    context_object_name = 'uzduotis'
+
+    # def get_success_url(self):
+    #     return reverse('uzduotis', kwargs={'pk': self.object.id})
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.save()
         return super().form_valid(form)
+
 
 
 class UzduotisEditView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
@@ -42,6 +47,14 @@ class UzduotisEditView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateVi
 
     def get_success_url(self):
         return reverse('uzduotis', kwargs={'pk': self.object.id})
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
     def form_valid(self, form):
         form.instance.user = self.request.user
