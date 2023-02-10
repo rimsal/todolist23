@@ -11,11 +11,11 @@
         <ul>
         <li><p> {{ uzduotis }}</p></li>
         <div class="form-group">
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'uzduotis' uzduotis.id %}">Redaguoti</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'uzduotis' uzduotis.id %}">Ištrinti</a>
+            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'redaguoti-uzduotis' uzduotis.pk %}">Redaguoti</a>
+            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'istrinti-uzduotis' uzduotis.pk %}">Ištrinti</a>
         </div>
+        {% endfor %}
+    </form>
     </ul>
-    {% endfor %}
-</form>
 {% endblock %}
-</div>
+    </div>
