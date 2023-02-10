@@ -21,6 +21,14 @@ class UzduotisView(generic.ListView):
     template_name = 'index.html'
     context_object_name = 'uzduotys'
 
+class UserUzduotisView(LoginRequiredMixin, generic.ListView):
+    model = Uzduotis
+    template_name = 'userindex.html'
+    context_object_name = 'uzduotys'
+
+    def get_queryset(self):
+        return Uzduotis.objects.filter(user=self.request.user)
+
 
 class UzduotisCreateView(LoginRequiredMixin, generic.ListView):
     model = Uzduotis
@@ -34,10 +42,17 @@ class UzduotisCreateView(LoginRequiredMixin, generic.ListView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        form.instance.user = User.objects.get(pk=self.kwargs['pk'])
         form.save()
         return super().form_valid(form)
 
-
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
 
 class UzduotisEditView(LoginRequiredMixin, UserPassesTestMixin, generic.CreateView):
     model = Uzduotis

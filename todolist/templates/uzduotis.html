@@ -1,18 +1,8 @@
+
 {% extends "base.html" %}
- {% block title %}<title>Užduotis nauja</title>{% endblock %}
+{% block title %}{% endblock %}
 {% block content %}
+{% csrf_token %}
+<h3>Savo užduotys</h3>>
 
-  <h1>Mano užduotis</h1>
-  <p>Mano atlikti darbai:</p>
-<ul>
-    <li>Data: <b>{{ nauja-uzduotis.data }}</b></li>
-    <li>User: <b>{{ uzduotis.user }}</b></li>
-</ul>
-
-{% if uzduotis.user == user %}
-<div>
-    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'redaguoti-uzduotis' uzduotis.id %}">Redaguoti:</a>
-    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'istrinti-uzduotis' uzduotis.id %}">Ištrinti:</a>
-</div>
-{% endif %}
 {% endblock %}

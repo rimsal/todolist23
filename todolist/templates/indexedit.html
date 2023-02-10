@@ -9,9 +9,11 @@
             <legend class="border-bottom mb-4">Užduoties sukūrimas/redagavimas</legend>
             {{ form|crispy }}
         </fieldset>
-        <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">Išsaugoti</button>
-        </div>
+     <div class="form-group">
+        <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'nauja-uzduotis' uzduotis.pk %}">Redaguoti</a>
+        <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'istrinti-uzduotis' uzduotis_id %}">Ištrinti</a>
+    </div>
+
     </form>
     </div>
 {% endblock content %}
